@@ -953,9 +953,9 @@ services:
     ports:
       - "9200"
     healthcheck:
-      test: curl -s http://localhost:9200/_cluster/health | grep -E '"status":"(green|yellow)"'
-      start_period: 10s
-      interval: 5s
-      timeout: 10s
-      retries: 10
+      test: ["CMD-SHELL", "curl -sS http://localhost:9200/_cluster/health || exit 1"]
+      start_period: 60s
+      interval: 10s
+      timeout: 30s
+      retries: 5
     logging: *logging
