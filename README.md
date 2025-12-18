@@ -46,6 +46,27 @@ your preferred deployment method:
 
 - [Docker](https://opentelemetry.io/docs/demo/docker_deployment/)
 - [Kubernetes](https://opentelemetry.io/docs/demo/kubernetes_deployment/)
+## Local quickstart & demo
+
+This repository contains a realistic microservice demo instrumented with OpenTelemetry. The sections below help you run a minimal local instance and verify observability signals (traces, metrics, logs).
+
+Quick local start (minimal):
+
+```bash
+cd /path/to/opentelemetry-demo
+docker compose -f docker-compose.minimal.yml up --build -d
+```
+
+Verify UIs (ports may vary; check `docker compose ps`):
+
+- Jaeger: http://localhost:16686
+- Grafana: http://localhost:55131
+- OpenSearch: http://localhost:<port>
+
+For a short guided demo, see `DEMO_SCRIPT.md` which walks through generating traffic and inspecting a trace in Jaeger, a metric in Grafana, and logs in OpenSearch.
+
+If you plan to modify the demo or stabilize startup on resource‑constrained hosts, inspect `docker-compose.yml` for service configs (healthchecks, memory limits, JVM options) and the `src/` Dockerfiles for service-specific instrumentation.
+
 
 ## Documentation
 
